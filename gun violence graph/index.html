@@ -1,0 +1,345 @@
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto;"></div>
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto; display: none"></div>
+
+
+<!-- coded for: 711 x 634 -->
+
+<!-- most lenient gun laws -->
+<script language="javascript">
+Highcharts.chart('container1', {
+	exporting: {
+		enabled: false
+	},
+	credits: {
+		enabled: false
+	},
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+    	
+    	x:-70,
+        text: 'Firearm-Related Deaths in Most Lenient Gun Law States'
+    },
+    subtitle: {
+    	x: -190,
+        text: 'Source: CDC/CrimAdvisor'
+    },
+    xAxis: [{
+        categories: ['AZ', 'AK', 'WY', 'LA', 'MT', 'AR',
+            'VA', 'KY', 'FL', 'NV'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+
+    	max: 0,
+    	floor: -100,
+        labels: {
+            format: '{value}',
+            style: {
+                color: '#E00000',
+            }
+        },
+        title: {
+            text: 'Gun Law Score',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        floor: 0,
+        max: 25,
+        title: {
+
+            text: 'Firearm Death Rates (per 100k population)',
+            style: {
+                
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                // color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        x: 10,
+        verticalAlign: 'top',
+        y: 0,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    series: [{
+    	pointWidth: '45',
+        name: 'Firearm Death Rates',
+        type: 'column',
+        yAxis: 1,
+        data: [13.8, 23.4, 19.6, 20.4, 19.2, 16.9, 10.9, 15.2, 12.0, 14.9],
+        color: '#009ACD',
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Gun Law Score',
+        type: 'spline',
+        data: [-39, -30, -28, -27, -25, -24, -22.5, -22, -20.5, -20.5],
+        color: '#E00000',
+        // color: Highcharts.getOptions().colors[8],
+        tooltip: {
+            valueSuffix: ''
+        }
+    }]
+});
+</script>
+
+
+<!-- strictest gun laws -->
+<script language="javascript">
+Highcharts.chart('container2', {
+	exporting: {
+		enabled: false
+	},
+	credits: {
+		enabled: false
+	},
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+    	x: -90,
+        text: 'Firearm-Related Deaths in Strictest Gun Law States'
+    },
+    subtitle: {
+    	x: -190,
+        text: 'Source: CDC/CrimAdvisor'
+    },
+    xAxis: [{
+        categories: ['CA', 'CT', 'MA', 'NJ', 'NY', 'HI',
+            'MD', 'RI', 'DE', 'IL'],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+    	min:0,
+    	max: 80,
+        labels: {
+            format: '{value}',
+            style: {
+                color: '#009933',
+            }
+        },
+        title: {
+            text: 'Gun Law Score',
+            style: {
+                
+            }
+        }
+    }, { // Secondary yAxis
+        
+    	floor: 0,
+    	max: 25,
+        title: {
+            text: 'Firearm Death Rates (per 100k population)',
+            style: {
+               
+            }
+        },
+        labels: {
+            format: '{value}',
+            style: {
+                
+            }
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        x: 10,
+        verticalAlign: 'top',
+        y: 0,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    series: [{
+    	pointWidth: '45',
+        name: 'Firearm Death Rates',
+        type: 'column',
+        yAxis: 1,
+        data: [7.7, 5.3, 3.0, 5.4, 4.2, 3.6, 11.9, 4.7, 12.1, 9.5],
+        color: '#009ACD',
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }, {
+        name: 'Gun Law Score',
+        type: 'spline',
+        data: [76, 73, 70, 69, 65.5, 62, 56, 55, 41, 40.5],
+        color: '#009933',
+        tooltip: {
+            valueSuffix: ''
+        }
+    }]
+});
+</script>
+
+
+
+
+<!-- buttons -->
+<section id="graphButtons">
+	<div id="button1"><a href="#" class="button button-flat">Most Lenient States</a></div>
+	<div id="button2"><a href="#" class="button button-flat">Strictest States</a></div>
+</section>
+
+<!-- buttons click -->
+<script language="javascript">
+	$ ("#button1").click(function(){
+		console.log("click1")
+		$("#container1").show();
+		$("#container2").hide();
+	});
+	$("#button2").click(function(){
+		console.log("click2")
+		$("#container2").show();
+		$("#container1").hide();
+	});
+</script>
+
+<script language="javascript">
+	/*! @license
+ *  Project: Buttons
+ *  Description: A highly customizable CSS button library built with Sass and Compass
+ *  Author: Alex Wolfe
+ *  License: Apache License v2.0
+ */
+
+// the semi-colon before function invocation is a safety net against concatenated
+// scripts and/or other plugins which may not be closed properly.
+;(function ( $, window, document, undefined ) {
+    'use strict';
+
+    // undefined is used here as the undefined global variable in ECMAScript 3 is
+    // mutable (ie. it can be changed by someone else). undefined isn't really being
+    // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
+    // can no longer be modified.
+
+    // window and document are passed through as local variable rather than global
+    // as this (slightly) quickens the resolution process and can be more efficiently
+    // minified (especially when both are regularly referenced in your plugin).
+
+    // Create the defaults once
+    var pluginName = "menuButton";
+    var menuClass = ".button-dropdown";
+    var defaults = {
+        propertyName: "value"
+    };
+
+    // The actual plugin constructor
+    function Plugin( element, options ) {
+
+        //SET OPTIONS
+        this.options = $.extend( {}, defaults, options );
+        this._defaults = defaults;
+        this._name = pluginName;
+
+        //REGISTER ELEMENT
+        this.$element = $(element);
+
+        //INITIALIZE
+        this.init();
+    }
+
+    Plugin.prototype = {
+        constructor: Plugin,
+
+        init: function() {
+            // WE DON'T STOP PROPGATION SO CLICKS WILL AUTOMATICALLY
+            // TOGGLE AND REMOVE THE DROPDOWN
+            this.toggle();
+        },
+
+        toggle: function(el, options) {
+            if(this.$element.data('dropdown') === 'show') {
+                this.hideMenu();
+            }
+            else {
+                this.showMenu();
+            }
+        },
+
+        showMenu: function() {
+            this.$element.data('dropdown', 'show');
+            this.$element.find('ul').show();
+        },
+
+        hideMenu: function() {
+            this.$element.data('dropdown', 'hide');
+            this.$element.find('ul').hide();
+        }
+    };
+
+    // A really lightweight plugin wrapper around the constructor,
+    // preventing against multiple instantiations
+    $.fn[pluginName] = function ( options ) {
+        return this.each(function () {
+
+            // TOGGLE BUTTON IF IT EXISTS
+            if ($.data(this, "plugin_" + pluginName)) {
+                $.data(this, "plugin_" + pluginName).toggle();
+            }
+            // OTHERWISE CREATE A NEW INSTANCE
+            else {
+                $.data(this, "plugin_" + pluginName, new Plugin( this, options ));
+            }
+        });
+    };
+
+    //CLOSE OPEN DROPDOWN MENUS IF CLICKED SOMEWHERE ELSE
+    $(document).on('click', function(e) {
+        $.each($('[data-buttons=dropdown]'), function(i, value) {
+            if ($(e.target.offsetParent)[0] != $(this)[0]) {
+                if ($.data(this, "plugin_" + pluginName)) {
+                    $.data(this, "plugin_" + pluginName).hideMenu();
+                    $(this).find('ul').hide();
+                }
+            }
+        });
+    });
+
+    //DELEGATE CLICK EVENT FOR DROPDOWN MENUS
+    $(document).on('click', '[data-buttons=dropdown]', function(e) {
+        var $dropdown = $(e.currentTarget);
+        $dropdown.menuButton();
+    });
+
+    //IGNORE CLICK EVENTS FROM DISPLAY BUTTON IN DROPDOWN
+    $(document).on('click', '[data-buttons=dropdown] > a', function(e) {
+        e.preventDefault();
+    });
+
+})( jQuery, window, document);
+</script>
+
+
+
+
+</body>
